@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ie.dkit.mapper.GoodsImageMapper">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="ie.dkit.entity.GoodsImage">
+        <id column="image_id" property="imageId"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="image_url" property="imageUrl"/>
+        <result column="thumbnail" property="thumbnail"/>
+        <result column="sort_order" property="sortOrder"/>
+        <result column="file_id" property="fileId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        select image_id, goods_id, image_url, thumbnail, sort_order, file_id from ecm_goods_image
+    </sql>
+
+    <select id="selectImageByGoodsId" resultMap="BaseResultMap" parameterType="integer">
+        <include refid="Base_Column_List"/>
+        where goods_id= #{goodsId}
+    </select>
+
+</mapper>
